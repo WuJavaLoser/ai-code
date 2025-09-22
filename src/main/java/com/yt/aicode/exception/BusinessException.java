@@ -2,6 +2,9 @@ package com.yt.aicode.exception;
 
 import lombok.Getter;
 
+/**
+ * @author wys17
+ */
 @Getter
 public class BusinessException extends RuntimeException {
 

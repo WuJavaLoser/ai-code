@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yt.aicode.basic.dao.UserDao">
+
+    <resultMap type="com.yt.aicode.basic.entity.User" id="UserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userAccount" column="user_account" jdbcType="VARCHAR"/>
+        <result property="userPassword" column="user_password" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="userAvatar" column="user_avatar" jdbcType="VARCHAR"/>
+        <result property="userProfile" column="user_profile" jdbcType="VARCHAR"/>
+        <result property="userRole" column="user_role" jdbcType="VARCHAR"/>
+        <result property="editTime" column="edit_time" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="queryById" resultMap="UserMap">
+        select
+id, user_account, user_password, user_name, user_avatar, user_profile, user_role, edit_time, create_time, update_time, is_delete        from user
+        where id = #{id}
+    </select>
+
+    <select id="query" resultMap="UserMap">
+        select
+id, user_account, user_password, user_name, user_avatar, user_profile, user_role, edit_time, create_time, update_time, is_delete        from user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userAccount != null and userAccount != ''">
+                and user_account = #{userAccount}
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                and user_password = #{userPassword}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            <if test="userAvatar != null and userAvatar != ''">
+                and user_avatar = #{userAvatar}
+            </if>
+            <if test="userProfile != null and userProfile != ''">
+                and user_profile = #{userProfile}
+            </if>
+            <if test="userRole != null and userRole != ''">
+                and user_role = #{userRole}
+            </if>
+            <if test="editTime != null">
+                and edit_time = #{editTime}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+        </where>
+    </select>
+
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from user
+        <where>
+            <if test="user.id != null">
+                and id = #{user.id}
+            </if>
+            <if test="user.userAccount != null and user.userAccount != ''">
+                and user_account = #{user.userAccount}
+            </if>
+            <if test="user.userPassword != null and user.userPassword != ''">
+                and user_password = #{user.userPassword}
+            </if>
+            <if test="user.userName != null and user.userName != ''">
+                and user_name = #{user.userName}
+            </if>
+            <if test="user.userAvatar != null and user.userAvatar != ''">
+                and user_avatar = #{user.userAvatar}
+            </if>
+            <if test="user.userProfile != null and user.userProfile != ''">
+                and user_profile = #{user.userProfile}
+            </if>
+            <if test="user.userRole != null and user.userRole != ''">
+                and user_role = #{user.userRole}
+            </if>
+            <if test="user.editTime != null">
+                and edit_time = #{user.editTime}
+            </if>
+            <if test="user.createTime != null">
+                and create_time = #{user.createTime}
+            </if>
+            <if test="user.updateTime != null">
+                and update_time = #{user.updateTime}
+            </if>
+            <if test="user.isDelete != null">
+                and is_delete = #{user.isDelete}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryAllByLimit" resultMap="UserMap">
+        select
+id, user_account, user_password, user_name, user_avatar, user_profile, user_role, edit_time, create_time, update_time, is_delete        from user
+        <where>
+            <if test="user.id != null">
+                and id = #{user.id}
+            </if>
+            <if test="user.userAccount != null and user.userAccount != ''">
+                and user_account = #{user.userAccount}
+            </if>
+            <if test="user.userPassword != null and user.userPassword != ''">
+                and user_password = #{user.userPassword}
+            </if>
+            <if test="user.userName != null and user.userName != ''">
+                and user_name = #{user.userName}
+            </if>
+            <if test="user.userAvatar != null and user.userAvatar != ''">
+                and user_avatar = #{user.userAvatar}
+            </if>
+            <if test="user.userProfile != null and user.userProfile != ''">
+                and user_profile = #{user.userProfile}
+            </if>
+            <if test="user.userRole != null and user.userRole != ''">
+                and user_role = #{user.userRole}
+            </if>
+            <if test="user.editTime != null">
+                and edit_time = #{user.editTime}
+            </if>
+            <if test="user.createTime != null">
+                and create_time = #{user.createTime}
+            </if>
+            <if test="user.updateTime != null">
+                and update_time = #{user.updateTime}
+            </if>
+            <if test="user.isDelete != null">
+                and is_delete = #{user.isDelete}
+            </if>
+        </where>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <insert id="insert">
+        insert into user(
+                        id,
+                        user_account,
+                user_password,
+                user_name,
+                user_avatar,
+                user_profile,
+                user_role,
+                is_delete,
+                create_time, edit_time, update_time
+        )
+        values (
+                        #{id},
+                        #{userAccount},
+                #{userPassword},
+                #{userName},
+                #{userAvatar},
+                #{userProfile},
+                #{userRole},
+                #{isDelete},
+                NOW(), NOW(), NOW()
+        )
+    </insert>
+    <insert id="insertBatch">
+        insert into user(id, user_account, user_password, user_name, user_avatar, user_profile, user_role, edit_time, create_time, update_time, is_delete)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.id}, #{entity.userAccount}, #{entity.userPassword}, #{entity.userName}, #{entity.userAvatar}, #{entity.userProfile}, #{entity.userRole}, #{entity.editTime}, #{entity.createTime}, #{entity.updateTime}, #{entity.isDelete})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch">
+        insert into user(id, user_account, user_password, user_name, user_avatar, user_profile, user_role, edit_time, create_time, update_time, is_delete)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.id}, #{entity.userAccount}, #{entity.userPassword}, #{entity.userName}, #{entity.userAvatar}, #{entity.userProfile}, #{entity.userRole}, #{entity.editTime}, #{entity.createTime}, #{entity.updateTime}, #{entity.isDelete})
+        </foreach>
+        on duplicate key update
+user_account = values(user_account),
+user_password = values(user_password),
+user_name = values(user_name),
+user_avatar = values(user_avatar),
+user_profile = values(user_profile),
+user_role = values(user_role),
+edit_time = values(edit_time),
+create_time = values(create_time),
+update_time = values(update_time),
+is_delete = values(is_delete)    </insert>
+
+    <update id="update">
+        update user
+        <set>
+                                <if test="userAccount != null and userAccount != ''">
+                        user_account = #{userAccount},
+                    </if>
+                    <if test="userPassword != null and userPassword != ''">
+                        user_password = #{userPassword},
+                    </if>
+                    <if test="userName != null and userName != ''">
+                        user_name = #{userName},
+                    </if>
+                    <if test="userAvatar != null and userAvatar != ''">
+                        user_avatar = #{userAvatar},
+                    </if>
+                    <if test="userProfile != null and userProfile != ''">
+                        user_profile = #{userProfile},
+                    </if>
+                    <if test="userRole != null and userRole != ''">
+                        user_role = #{userRole},
+                    </if>
+                    <if test="isDelete != null">
+                        is_delete = #{isDelete},
+                    </if>
+                        edit_time = NOW(),
+            update_time = NOW()
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="deleteById">
+        delete from user where id = #{id}
+    </delete>
+
+</mapper>
