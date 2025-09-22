@@ -1,0 +1,52 @@
+# Spring Boot Application Configuration
+spring:
+  application:
+    name: ai-code
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://117.72.127.194:3306/code?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Wu123456.
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+# MyBatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.yt.aicode.basic.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: null
+
+# 服务器配置
+server:
+  port: 8000
+  servlet:
+    context-path: /api
+
+# 日志配置
+logging:
+  level:
+    com.yt.aicode: debug
+    org.springframework: info
+    com.yt.aicode.basic.dao: debug
+
+# springdoc-openapi配置
+springdoc:
+  group-configs:
+    - group: 'default'
+      packages-to-scan: com.yt.aicode.basic.controller
+
+# knife4j配置
+knife4j:
+  enable: true
