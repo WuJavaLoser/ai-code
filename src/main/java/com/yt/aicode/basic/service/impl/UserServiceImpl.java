@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
         // 5. 插入数据
         user.setUserName("null");
         user.setUserRole(UserRoleEnum.USER.getValue());
-        user.setIsDelete(0);
+        user.setIsDelete(1);
         boolean saveResult = userDao.insert(user)>0;
         if (!saveResult) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "注册失败，数据库错误");

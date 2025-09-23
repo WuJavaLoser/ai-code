@@ -82,6 +82,14 @@ public class UserController {
         return Result.success(result);
     }
 
+    @GetMapping("/get/login")
+    public Result<UserVo> getLoginUser(HttpServletRequest request) {
+        User loginUser = userService.getLoginUser(request);
+        UserVo userVo=UserConvert.INSTANCE.yToVo(loginUser);
+        return Result.success(userVo);
+    }
+
+
     /**
      * 创建用户
      *
@@ -99,8 +107,8 @@ public class UserController {
         // 默认密码 12345678
         String encryptPassword = DigestUtils.md5DigestAsHex((DEFAULT_PASSWORD).getBytes());
         user.setUserPassword(encryptPassword);
-        // 设置默认值，防止数据库报错
-        user.setIsDelete(0);
+        // 设置默认值
+        user.setIsDelete(1);
         boolean result = userService.insert(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return Result.success(user.getId());

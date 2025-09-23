@@ -21,22 +21,11 @@
           代码魔方
         </a>
         <span class="divider">|</span>
-        <a
-          href="https://github.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="footer-link"
-        >
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">
           GitHub
         </a>
         <span class="divider">|</span>
-        <a
-          href="#"
-          class="footer-link"
-          @click.prevent="showContact"
-        >
-          联系我们
-        </a>
+        <a href="#" class="footer-link" @click.prevent="showContact"> 联系我们 </a>
       </div>
     </div>
   </div>
@@ -54,58 +43,60 @@ const showContact = () => {
 <style scoped>
 .global-footer {
   width: 100%;
-  background: #fff;
-  border-top: 1px solid #e8e8e8;
+  background: transparent;
+  border-top: none;
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 32px 24px;
   text-align: center;
 }
 
 .copyright {
-  margin: 0 0 8px 0;
+  margin: 0 0 12px 0;
   color: #666;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .author-link {
-  color: #1890ff;
+  color: #000;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .author-link:hover {
-  color: #40a9ff;
-  text-decoration: underline;
+  color: #1890ff;
+  text-decoration: none;
 }
 
 .footer-links {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .footer-link {
   color: #666;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 400;
   transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #1890ff;
+  color: #000;
 }
 
 .divider {
   color: #d9d9d9;
-  font-size: 12px;
+  font-size: 14px;
+  margin: 0 4px;
 }
 
 /* 响应式设计 */
